@@ -1,0 +1,48 @@
+import random
+# Initial steps to Start the game
+# Importing Hangman parts from text file
+# Importing words from a text file
+hang=[]
+with open('h1/hang.txt','r') as file:  
+    # reading each line    
+    for i,line in enumerate(file):
+        hang.append(line)
+with open("h1/words.txt", "r") as f:
+    for i in f:
+        list=i.split(',')
+guessing_word = random.choice(list).lower()
+
+# Printing the word for testing purpose
+print(guessing_word)
+word_letters = len(guessing_word)
+def main():
+# Game logic starts here
+game_over = False
+tries = 5
+result = []
+for _ in range(word_letters):
+    result += "_"
+# Loop to iterate till game over
+while not game_over:
+    user_guess = input("Guess a letter: ")
+    if user_guess in result:
+        print(f"The letter you guessed {user_guess}")
+    for pos in range(word_letters):
+        letter = guessing_word[pos]
+        if letter == user_guess:
+            result[pos] = letter
+    if user_guess not in guessing_word:
+        print(f"You guessed {user_guess}, this letter is not in the word, You lose a try.")
+        tries -= 1
+        if tries == 0:
+            game_over = True
+            print("Game Over.")
+    print(f"{' '.join(result)}")
+    if "_" not in result:
+        game_over = True
+        print("Winner, Congratulations.")
+# Loop to print hangman parts 
+    for i in hang[4-tries].split('n'):
+                print(i)
+print(f'The word is {guessing_word}.')
+main()
