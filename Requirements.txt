@@ -1,0 +1,9 @@
+The Hangman Project contains
+
+-> Creating a hangman game by using the python
+
+-> Reading the Hangman Images from the text file i.e. hang
+
+-> Reading the words from the dictionary text file i.e. words
+
+-> List all of the words to make the game go faster.
